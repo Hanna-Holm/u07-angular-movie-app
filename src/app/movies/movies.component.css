@@ -1,0 +1,15 @@
+
+
+.movie-box {
+    list-style: none;
+    display: flex;
+}
+
+.movie-box > li {
+    padding: 1rem;
+}
+
+.col-sm {
+    text-align: center;
+    padding: 3rem;
+}
