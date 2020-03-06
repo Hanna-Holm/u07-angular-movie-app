@@ -1,15 +1,13 @@
-
-
-.movie-box {
-    list-style: none;
-    display: flex;
+h1, h2 {
+    text-align: center;
 }
 
-.movie-box > li {
-    padding: 1rem;
+.movies-container {
+    display: flex;
+    justify-content: center;
 }
 
 .col-sm {
     text-align: center;
-    padding: 3rem;
+    margin-top: 5rem;
 }

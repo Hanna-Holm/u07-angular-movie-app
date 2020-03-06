@@ -9,6 +9,11 @@ import { Movie } from '../movies';
 })
 export class MoviesComponent implements OnInit {
   movies: Movie[];
+  selectedMovie: Movie;
+
+  selectMovie(movie: Movie): void {
+    this.selectedMovie = movie;
+  }
 
   constructor(private moviesService: MoviesService) { }
 
