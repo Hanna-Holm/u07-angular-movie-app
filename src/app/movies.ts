@@ -1,5 +1,6 @@
 export interface Movie {
-    adult: boolean;
     title: string;
-    release_date: Date;   
+    vote_average: number;
+    release_date: Date; 
+    overview: string;  
 }
