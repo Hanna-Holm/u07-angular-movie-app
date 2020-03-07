@@ -10,4 +10,5 @@ h1, h2 {
 .col-sm {
     text-align: center;
     margin-top: 5rem;
+    cursor: pointer;
 }
