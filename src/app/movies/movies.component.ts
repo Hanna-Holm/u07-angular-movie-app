@@ -7,22 +7,16 @@ import { Movie } from '../movies';
   templateUrl: './movies.component.html',
   styleUrls: ['./movies.component.css']
 })
+
 export class MoviesComponent implements OnInit {
   movies: Movie[];
-  selectedMovie: Movie;
-
-  selectMovie(movie: Movie): void {
-    this.selectedMovie = movie;
-  }
 
   constructor(private moviesService: MoviesService) { }
 
   ngOnInit() {
     this.moviesService.getMovies()
       .subscribe((data) => {
-      console.log(data);
       this.movies = data['results'];
-      console.log('fetched movie');
       });
   }
 }

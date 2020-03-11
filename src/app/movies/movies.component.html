@@ -6,23 +6,14 @@
 if I have made an interface and then imported the interface 
 and declared a movie as a Movie object and then set values -->
 
-<app-movie-details [movie]="selectedMovie"></app-movie-details>
-
-<!-- <div *ngIf="selectedMovie">
-    <p>{{selectedMovie.title}}<p>
-    <p>{{selectedMovie.vote_average}}</p>
-    <p>{{selectedMovie.overview}}</p>
-    <p>Release date {{selectedMovie.release_date}}</p>
-</div> -->
+<app-search></app-search>
 
 <main class="movies-container">
     <div class="row">
         <div *ngFor="let movie of movies" class="col-sm" 
-            (click)="selectMovie(movie)" 
-            [class.Selected]="selectedMovie === movie">
+            routerLink="/detail/{{movie.id}}">
                 <h2>{{movie.title}}</h2>
                 <h3>{{movie.vote_average}}</h3>
-                <p>{{movie.release_date}}</p>
                 <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{movie.poster_path}}"/>
         </div>
     </div>
