@@ -11,32 +11,55 @@ import { Movie } from './movies';
 
 export class MoviesService {
 
-  private moviesUrl = 'api/movies';
-
   private API_KEY = '86f786cb3168b7be2d9b10e010de421b';
+  private moviesUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${this.API_KEY}&append_to_response=credits`;
+  
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
   
   constructor(private httpClient: HttpClient) { }
 
   getMovies() {
-    return this.httpClient.get(`https://api.themoviedb.org/3/movie/popular?api_key=${this.API_KEY}`)
+    return this.httpClient.get(this.moviesUrl)
   }
 
-  getMovie(id: number): Observable<Movie[]> {
-    return this.httpClient.get(`https://api.themoviedb.org/3/movie/${id}?api_key=${this.API_KEY}`);
+  getMovie(id: number) : Observable<Movie> {
+    return this.httpClient.get<Movie>(`https://api.themoviedb.org/3/movie/${id}?api_key=${this.API_KEY}&append_to_response=credits`);
   }
 
   searchMovies(term: string): Observable<Movie[]> {
-    console.log('Entering the searchMovies function');
+
     if (!term.trim()) {
       // if not search term, return empty hero array
       return of([]);
     }
     return this.httpClient.get<Movie[]>(`${this.moviesUrl}/?name=${term}`).pipe(
       tap(x => x.length ?
-        console.log( `found heroes matching "${term}"`) :
-        console.log(`no heroes matchin "${term}"`)),
+        console.log(`Found movies matching ${term}`) :
+        console.log(`No movies matching ${term}`)
+      ),
+      catchError(this.handleError<Movie[]>('searchMovies', []))
     );
+  }
 
+  /**
+ * Handle Http operation that failed.
+ * Let the app continue.
+ * @param operation - name of the operation that failed
+ * @param result - optional value to return as the observable result
+ */
+  private handleError<T> (operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+
+      // TODO: better job of transforming error for user consumption
+      console.log(`${operation} failed: ${error.message}`);
+
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
   }
 }
-

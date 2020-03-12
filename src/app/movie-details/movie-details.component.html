@@ -1,8 +1,9 @@
-<p>HELLO</p>
-<div *ngIf="movie">
-    <p>{{movie.title}}<p>
-    <p>{{movie.vote_average}}</p>
-    <p>{{movie.overview}}</p>
-    <p>Release date {{movie.release_date}}</p>
+
+<div *ngIf="fetchedMovie">
+    <p>{{fetchedMovie.title}}<p>
+    <p>{{fetchedMovie.vote_average}}</p>
+    <p>{{fetchedMovie.overview}}</p>
+    <p>Release date {{fetchedMovie.release_date}}</p>
 </div>
+
 <button (click)="goBack()">go back</button>

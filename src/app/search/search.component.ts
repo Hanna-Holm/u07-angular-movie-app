@@ -14,6 +14,7 @@ import { Movie } from '../movies';
 export class SearchComponent implements OnInit {
 
   movies$: Observable<Movie[]>;
+  
   private searchTerms = new Subject<string>();
 
   constructor(private movieService: MoviesService) { }
@@ -21,7 +22,7 @@ export class SearchComponent implements OnInit {
   search(term: string): void {
     this.searchTerms.next(term);
   }
-
+  
   ngOnInit(): void {
     this.movies$ = this.searchTerms.pipe(
       debounceTime(300),

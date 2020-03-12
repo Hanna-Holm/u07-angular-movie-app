@@ -3,7 +3,6 @@ h1, h2 {
 }
 
 .movies-container {
-    display: flex;
     justify-content: center;
 }
 

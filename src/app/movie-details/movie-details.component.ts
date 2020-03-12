@@ -12,7 +12,8 @@ import { Movie } from '../movies';
 })
 export class MovieDetailsComponent implements OnInit {
 
-  movie: Movie;
+  movie: Movie[];
+  fetchedMovie: Movie;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,9 +28,9 @@ export class MovieDetailsComponent implements OnInit {
   getMovie(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     this.moviesService.getMovie(id)
-    .subscribe((data) => {
-      this.movie = data['results'];
-      });
+      .subscribe((data) => {
+      this.fetchedMovie = data;
+    });
   }
 
   goBack(): void {
