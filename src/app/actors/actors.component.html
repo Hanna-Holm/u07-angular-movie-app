@@ -5,11 +5,10 @@
   <input #searchBox id="search-box" [(ngModel)]="searchTerm"/>
   
   <main class="actors-container">
-    <div class="row">
-      <div
-        *ngFor="let actor of actors | searchActor:'name':searchTerm"
+      <div *ngFor="let actor of actors | searchActor:'name':searchTerm"
         class="actor">
         <h3>{{ actor.name }}</h3>
+        <img src="https://image.tmdb.org/t/p/original{{actor.profile_path}}" />
+        <p></p>
       </div>
-    </div>
   </main>
