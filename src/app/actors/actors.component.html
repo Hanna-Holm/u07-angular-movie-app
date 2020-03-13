@@ -7,7 +7,7 @@
   <main class="actors-container">
     <div class="row">
       <div
-        *ngFor="let actor of actors"
+        *ngFor="let actor of actors | searchActor:'name':searchTerm"
         class="actor">
         <h3>{{ actor.name }}</h3>
       </div>
