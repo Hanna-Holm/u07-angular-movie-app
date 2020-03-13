@@ -1,29 +1,20 @@
 <header>
-    <h1>Popular movies</h1>
+  <h1>Popular movies</h1>
 </header>
-
-<!-- Here I can write movies as {{movie.title}} etc
-if I have made an interface and then imported the interface 
-and declared a movie as a Movie object and then set values -->
-
-<app-movie-details [movie]="selectedMovie"></app-movie-details>
-
-<!-- <div *ngIf="selectedMovie">
-    <p>{{selectedMovie.title}}<p>
-    <p>{{selectedMovie.vote_average}}</p>
-    <p>{{selectedMovie.overview}}</p>
-    <p>Release date {{selectedMovie.release_date}}</p>
-</div> -->
+<p>Search for movies: </p>
+<input #searchBox id="search-box" [(ngModel)]="searchTerm"/>
 
 <main class="movies-container">
-    <div class="row">
-        <div *ngFor="let movie of movies" class="col-sm" 
-            (click)="selectMovie(movie)" 
-            [class.Selected]="selectedMovie === movie">
-                <h2>{{movie.title}}</h2>
-                <h3>{{movie.vote_average}}</h3>
-                <p>{{movie.release_date}}</p>
-                <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{movie.poster_path}}"/>
-        </div>
+  <div class="row">
+    <div
+      *ngFor="let movie of movies | search:'title,vote_average':searchTerm"
+      class="movie"
+      routerLink="/detail/{{ movie.id }}">
+      <h3>{{ movie.title }}</h3>
+      <h3>{{ movie.vote_average }}</h3>
+      <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/{{movie.poster_path}}"
+      />
+      <p>{{movie.cast}}</p>
     </div>
+  </div>
 </main>

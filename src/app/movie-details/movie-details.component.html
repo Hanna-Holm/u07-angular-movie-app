@@ -1,7 +1,17 @@
 
-<div *ngIf="movie">
-    <p>{{movie.title}}<p>
-    <p>{{movie.vote_average}}</p>
-    <p>{{movie.overview}}</p>
-    <p>Release date {{movie.release_date}}</p>
+<div *ngIf="fetchedMovie">
+    <h1>{{fetchedMovie.title}}</h1>
+    <p>{{fetchedMovie.vote_average}}</p>
+    <p>{{fetchedMovie.overview}}</p>
+    <p>Release date {{fetchedMovie.release_date}}</p>
+    <h2>Actors list: </h2>
+    <div class="actors-container">
+        <div *ngFor="let actor of fetchedMovie.credits.cast" class="actor">
+            <h3>{{ actor.name }}</h3>
+            <p>Character: {{ actor.character }}<p>
+            <img src="https://image.tmdb.org/t/p/original{{actor.profile_path}}" />
+        </div>
+    </div>
 </div>
+
+<button (click)="goBack()">go back</button>
