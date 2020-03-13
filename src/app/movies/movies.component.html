@@ -7,7 +7,7 @@
 <main class="movies-container">
   <div class="row">
     <div
-      *ngFor="let movie of movies | search:'title,vote_average':searchTerm"
+      *ngFor="let movie of movies | searchMovie:'title,vote_average':searchTerm"
       class="movie"
       routerLink="/detail/{{ movie.id }}">
       <h3>{{ movie.title }}</h3>
