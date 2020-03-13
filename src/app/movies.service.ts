@@ -12,7 +12,7 @@ import { Movie } from './movies';
 export class MoviesService {
 
   private API_KEY = '86f786cb3168b7be2d9b10e010de421b';
-  private moviesUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${this.API_KEY}&append_to_response=credits`;
+  private moviesUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${this.API_KEY}`;
   
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -20,27 +20,12 @@ export class MoviesService {
   
   constructor(private httpClient: HttpClient) { }
 
-  getMovies() {
-    return this.httpClient.get(this.moviesUrl)
+  getMovies(): Observable<Movie[]> {
+    return this.httpClient.get<Movie[]>(this.moviesUrl);
   }
 
   getMovie(id: number) : Observable<Movie> {
     return this.httpClient.get<Movie>(`https://api.themoviedb.org/3/movie/${id}?api_key=${this.API_KEY}&append_to_response=credits`);
-  }
-
-  searchMovies(term: string): Observable<Movie[]> {
-
-    if (!term.trim()) {
-      // if not search term, return empty hero array
-      return of([]);
-    }
-    return this.httpClient.get<Movie[]>(`${this.moviesUrl}/?name=${term}`).pipe(
-      tap(x => x.length ?
-        console.log(`Found movies matching ${term}`) :
-        console.log(`No movies matching ${term}`)
-      ),
-      catchError(this.handleError<Movie[]>('searchMovies', []))
-    );
   }
 
   /**

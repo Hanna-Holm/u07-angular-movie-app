@@ -5,11 +5,12 @@ import { Movie } from '../movies';
 @Component({
   selector: 'app-movies',
   templateUrl: './movies.component.html',
-  styleUrls: ['./movies.component.css']
+  styleUrls: ['./movies.component.css'],
 })
 
 export class MoviesComponent implements OnInit {
   movies: Movie[];
+  searchTerm: string
 
   constructor(private moviesService: MoviesService) { }
 
