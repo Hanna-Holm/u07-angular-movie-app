@@ -1,0 +1,15 @@
+<header>
+    <h1>Popular actors</h1>
+  </header>
+  <p>Search for actors: </p>
+  <input #searchBox id="search-box" [(ngModel)]="searchTerm"/>
+  
+  <main class="actors-container">
+    <div class="row">
+      <div
+        *ngFor="let actor of actors"
+        class="actor">
+        <h3>{{ actor.name }}</h3>
+      </div>
+    </div>
+  </main>

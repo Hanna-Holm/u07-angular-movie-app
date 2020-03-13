@@ -8,14 +8,16 @@ import { MovieDetailsComponent } from "./movie-details/movie-details.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
-import { SearchPipe } from './movies/movies.search.pipe';
+import { MovieSearchPipe } from './movies/movies.search.pipe';
+import { ActorsComponent } from './actors/actors.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MoviesComponent,
     MovieDetailsComponent,
-    SearchPipe
+    MovieSearchPipe,
+    ActorsComponent
   ],
   imports: [
     FormsModule,

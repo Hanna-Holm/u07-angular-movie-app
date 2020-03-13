@@ -2,9 +2,9 @@ import { Pipe, PipeTransform } from "@angular/core";
 import { Movie } from "../movies";
 
 @Pipe({
-  name: "search"
+  name: "searchMovie"
 })
-export class SearchPipe implements PipeTransform {
+export class MovieSearchPipe implements PipeTransform {
   public transform(movies: Movie[], keys: string, term: string) {
     const regex = new RegExp(term, "gi");
 
